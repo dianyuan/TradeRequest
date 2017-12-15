@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Render } from 'react-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
-
+import { SelectType} from '../actions/index'
 
 
 class TRType extends Component {
@@ -32,5 +31,9 @@ function mapStateToProps(state) {
   };
 }
 
+function matchDispatchToProps(dispatch){
+  return bindActionCreators({ SelectType: SelectType}, dispatch)
+}
 
-export default connect(mapStateToProps)(TRType);
+
+export default connect(mapStateToProps, matchDispatchToProps)(TRType);
