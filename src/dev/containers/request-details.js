@@ -6,12 +6,12 @@ import { connect } from 'react-redux';
 class TypeDetail extends Component {
 
   render() {
-    if (!this.props.TypeDetail){
+    if (!this.props.ActiveTypeReducer){
       return (<h4>Select a user...</h4>)
     }
     return (
       <div>
-        <h1>{this.props.TypeDetail.key}</h1>
+        <h1>{this.props.ActiveTypeReducer.key}</h1>
       </div>
     );
   }
