@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 import { SelectType} from '../actions/index'
 
 
-class TRType extends Component {
+class TRTypeClass extends Component {
 
   createListItems() {
     return this.props.TRType.map((Types) => {
       return (
-        <li key={Types.key}>{Types.text} {Types.value}</li>
+        <li key={Types.key} onClick={() => { this.props.SelectType(Types)}}>{Types.text} {Types.value}</li>
       );
     });
   }
@@ -36,4 +36,4 @@ function matchDispatchToProps(dispatch){
 }
 
 
-export default connect(mapStateToProps, matchDispatchToProps)(TRType);
+export default connect(mapStateToProps, matchDispatchToProps)(TRTypeClass);
