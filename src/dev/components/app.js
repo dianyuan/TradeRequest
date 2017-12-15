@@ -1,5 +1,5 @@
 import React from 'react';
-import TRType from '../Containers/TradeRequest';
+import TRType from '../containers/trade-request';
 
 const App = () => (
   <div>
