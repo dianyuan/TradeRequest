@@ -9,8 +9,8 @@ import { bindActionCreators } from 'redux';
 
 const validate = values => {
   const errors = {}
-  if (!values.test) {
-    errors.test = 'Username is Required'
+  if (!values.username) {
+    errors.username = 'Username is Required'
   }
 
   if (!values.password) {
