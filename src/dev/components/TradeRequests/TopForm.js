@@ -4,7 +4,7 @@ import { Button, Form, Segment, Label, Message, Sidebar, Menu, Image, Icon, Head
 import 'semantic-ui-css/semantic.min.css'
 
 class FormExampleSubcomponentControl extends Component {
-  
+
   state = {
     Type: "",
     Category: "",
@@ -63,6 +63,7 @@ class FormExampleSubcomponentControl extends Component {
     this.props.error;
 
     return isError;
+    
   };
 
   toggleVisibility = () => this.setState({ visible: !this.state.visible })
