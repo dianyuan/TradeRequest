@@ -1,72 +1,74 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Form, Icon, Button } from 'semantic-ui-react';
+import { LabelInputField, CheckboxField, Select } from 'react-semantic-redux-form';
+import { connect } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css'
+import { SelectType } from '../actions/index'
+import { bindActionCreators } from 'redux';
 
-const renderTextField = props => (
-  <Form.Input label={props.name} placeholder={props.name} />
-)
+const validate = values => {
+  const errors = {}
+  if (!values.test) {
+    errors.test = 'Username is Required'
+  }
 
-
-const SimpleForm = (props) => {
-  const { handleSubmit, pristine, reset, submitting } = props
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <div>
-          <Field name="firstName" component={renderTextField} type="text" placeholder="First Name" />
-        </div>
-      </div>
-      <div>
-        <label>Last Name</label>
-        <div>
-          <Field name="lastName" component="input" type="text" placeholder="Last Name" />
-        </div>
-      </div>
-      <div>
-        <label>Email</label>
-        <div>
-          <Field name="email" component="input" type="email" placeholder="Email" />
-        </div>
-      </div>
-      <div>
-        <label>Sex</label>
-        <div>
-          <label><Field name="sex" component="input" type="radio" value="male" /> Male</label>
-          <label><Field name="sex" component="input" type="radio" value="female" /> Female</label>
-        </div>
-      </div>
-      <div>
-        <label>Favorite Color</label>
-        <div>
-          <Field name="favoriteColor" component="select">
-            <option></option>
-            <option value="ff0000">Red</option>
-            <option value="00ff00">Green</option>
-            <option value="0000ff">Blue</option>
-          </Field>
-        </div>
-      </div>
-      <div>
-        <label htmlFor="employed">Employed</label>
-        <div>
-          <Field name="employed" id="employed" component="input" type="checkbox" />
-        </div>
-      </div>
-      <div>
-        <label>Notes</label>
-        <div>
-          <Field name="notes" component="textarea" />
-        </div>
-      </div>
-      <div>
-        <button type="submit" disabled={pristine || submitting}>Submit</button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
-      </div>
-    </form>
-  )
+  if (!values.password) {
+    errors.password = 'Password is Required'
+  }
+  return errors;
 }
 
+
+class LoginForm extends React.Component{
+  
+  render(){
+    return (
+      <Form>
+        <Form.Group>
+        <Field name='username' component={LabelInputField}
+          label={{ content: <Icon color='blue' name='user' size='large' /> }}
+          labelPosition='left'
+          placeholder='Username' />
+        <Field name='password' component={LabelInputField}
+          type='password'
+          label={{ content: <Icon color='blue' name='lock' size='large' /> }}
+          labelPosition='left'
+          placeholder='Password' />
+          
+          <Field 
+            name='selection' 
+            component={Select} 
+            label='Stay sign in' 
+            placeholder='Type' 
+            options={this.props.TRType}
+            >
+          </Field>
+        </Form.Group>
+        <Field name='remember' component={CheckboxField}
+          label='Stay sign in' />
+        <Form.Field control={Button} primary className='submit-btn'
+          type='submit'>
+          Submit
+        </Form.Field>
+      </Form>
+    );
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    TRType: state.TRType
+  };
+}
+
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({ SelectType: SelectType }, dispatch)
+}
+
+LoginForm = connect(mapStateToProps, matchDispatchToProps)(LoginForm);
+
 export default reduxForm({
-  form: 'simple'  // a unique identifier for this form
-})(SimpleForm)
+  form: 'loginForm',	// a unique identifier for this form
+  validate,
+}) (LoginForm)

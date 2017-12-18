@@ -1,15 +1,16 @@
 import React from 'react';
 import TRType from '../containers/trade-request';
 import TypeDetail from '../containers/request-details';
-import SimpleForm from '../containers/SubmissionForm';
-
+import LoginForm from '../containers/SubmissionForm';
+import showResults from "./showResults";
+import { Values } from "redux-form-website-template";
 
 const App = () => (
   <div>
     Hello
     <TRType />
     <TypeDetail />
-    <SimpleForm />
+    <LoginForm onSubmit={showResults} />
   </div>
 );
 
