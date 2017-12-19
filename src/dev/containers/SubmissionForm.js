@@ -21,6 +21,11 @@ const validate = values => {
 
 
 class LoginForm extends React.Component{
+
+  handleChange = (e) => {
+    this.props.SelectType(e);
+    alert(e);
+  }
   
   render(){
     return (
@@ -42,6 +47,7 @@ class LoginForm extends React.Component{
             label='Stay sign in' 
             placeholder='Type' 
             options={this.props.TRType}
+            onChange={(e) => {this.handleChange(e)}} 
             >
           </Field>
         </Form.Group>
