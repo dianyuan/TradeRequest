@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Form, Icon, Button } from 'semantic-ui-react';
+import { Form, Icon, Button, Divider, Grid } from 'semantic-ui-react';
 import { LabelInputField, CheckboxField, SelectField } from 'react-semantic-redux-form';
 import { connect } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css'
@@ -10,6 +10,24 @@ import { bindActionCreators } from 'redux';
 const validate = values => {
   const errors = {}
   
+  if (!values.username) {
+    errors.username = 'Username is Required'
+  }
+
+  if (!values.password) {
+    errors.password = 'Password is Required'
+  }
+
+  if (values.Type == 'Buy') {
+    alert("I want to buy!!");
+  }
+
+  return errors;
+}
+
+const handleChange = values => {
+  const errors = {}
+
   if (!values.username) {
     errors.username = 'Username is Required'
   }
@@ -35,88 +53,139 @@ class LoginForm extends React.Component{
   
   render(){
     return (
+
       <Form>
 
-        <Form.Group>
+        <Form.Group width="equal">
 
-          <Field
-            name='Type'
-            component={SelectField}
-            label='Type'
-            placeholder='Select Trade Type'
-            options={this.props.TRType}
-            onChange={(e, value) => { this.props.SelectType(value) }}
-          />
+          
+          <Grid container stackable>
+            <Grid.Row columns={3}>
+              <Grid.Column>
 
-          <Field
-            name='TRCategory'
-            component={SelectField}
-            label='Category'
-            placeholder='Type'
-            options={this.props.TRType}
-            onChange={(e, value) => { this.props.SelectType(value) }}
-          />
+                <Field
+                  name='Type'
+                  component={SelectField}
+                  label='Type'
+                  placeholder='Select Trade Type'
+                  options={this.props.TRType}
+                  onChange={(e, value) => { this.props.SelectType(value) }}
+                />
 
-          <Field
-            name='TRStrategy'
-            component={SelectField}
-            label='Allocation Strategy'
-            placeholder='Type'
-            options={this.props.TRType}
-            onChange={(e, value) => { this.props.SelectType(value) }}
-          />
+              </Grid.Column>
+              <Grid.Column>
+
+                <Field
+                  name='TRCategory'
+                  component={SelectField}
+                  label='Category'
+                  placeholder='Type'
+                  options={this.props.TRType}
+                  onChange={(e, value) => { this.props.SelectType(value) }}
+                />
+
+              </Grid.Column>
+              <Grid.Column>
+
+                <Field
+                  name='TRStrategy'
+                  component={SelectField}
+                  label='Allocation Strategy'
+                  placeholder='Type'
+                  options={this.props.TRType}
+                  onChange={(e, value) => { this.props.SelectType(value) }}
+                />
+
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
 
         </Form.Group>
 
-        <hr />
+        <br />
 
         <Form.Group>
+
+          <Grid container stackable>
+            <Grid.Row columns={2}>
+              <Grid.Column>
 
           <Field name='username' component={LabelInputField}
             label={{ content: <Icon color='blue' name='user' size='large' /> }}
             labelPosition='left'
             placeholder='Username' />
 
-          <Field name='password' component={LabelInputField}
-            type='password'
-            label={{ content: <Icon color='blue' name='lock' size='large' /> }}
-            labelPosition='left'
-            placeholder='Password' />
+              </Grid.Column>
+              <Grid.Column>
 
           <Field name='password' component={LabelInputField}
             type='password'
             label={{ content: <Icon color='blue' name='lock' size='large' /> }}
             labelPosition='left'
             placeholder='Password' />
+
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row columns={3}>
+
+              <Grid.Column>
+
+          <Field name='password' component={LabelInputField}
+            type='password'
+            label={{ content: <Icon color='blue' name='lock' size='large' /> }}
+            labelPosition='left'
+            placeholder='Password' />
+
+              </Grid.Column>
+              <Grid.Column>
           
           <Field name='password' component={LabelInputField}
             type='password'
             label={{ content: <Icon color='blue' name='lock' size='large' /> }}
             labelPosition='left'
             placeholder='Password' />
+
+              </Grid.Column>
+              <Grid.Column>
           
           <Field name='password' component={LabelInputField}
             type='password'
             label={{ content: <Icon color='blue' name='lock' size='large' /> }}
             labelPosition='left'
             placeholder='Password' />
+
+              </Grid.Column>
+            </Grid.Row>
+        </Grid>
             
         </Form.Group>
 
-        <hr/>
+        <br />
 
         <Form.Group>
+
+          <Grid container stackable>
+            <Grid.Row columns={2}>
+              <Grid.Column>
 
           <Field name='username' component={LabelInputField}
             label={{ content: <Icon color='blue' name='user' size='large' /> }}
             labelPosition='left'
             placeholder='Username' />
 
+              </Grid.Column>
+              <Grid.Column>
+
           <Field name='password' component={LabelInputField}
             type='password'
             label={{ content: <Icon color='blue' name='lock' size='large' /> }}
             labelPosition='left'
             placeholder='Password' />
+
+              </Grid.Column>
+
+            </Grid.Row>
+          </Grid>
 
         </Form.Group>
 
