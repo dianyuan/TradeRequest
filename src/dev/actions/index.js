@@ -1,5 +1,5 @@
 export const SelectType = (TRType) => {
-  console.log("Hello");
+  alert(JSON.stringify(TRType));
   return {
     type: "TYPE_SELECTED",
     payload: TRType,

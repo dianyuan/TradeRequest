@@ -5,9 +5,6 @@ import LoginForm from '../containers/SubmissionForm';
 
 const App = () => (
   <div>
-    Hello
-    <TRType />
-    <TypeDetail />
     <LoginForm />
   </div>
 );
